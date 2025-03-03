@@ -67,3 +67,13 @@
 .submit.gray {
   background: #ccc;
 }
+
+.icon {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  .input {
+    display: flex;
+    align-items: center;
+  }
+  
