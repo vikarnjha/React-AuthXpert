@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <Signin />
+      {/* <Signin /> */}
       <Signup />
     </>
   )
