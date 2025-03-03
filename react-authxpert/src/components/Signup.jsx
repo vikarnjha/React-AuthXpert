@@ -23,6 +23,10 @@ const Signup = () => {
         <FaLock className="icon" />
           <input type="password" placeholder="Password" />
         </div>
+        <div className="input">
+        <FaLock className="icon" />
+          <input type="password" placeholder="Confirm Password" />
+        </div>
       </div>
       <div className="forgot-password">
         Forget Password? <span>Click Here!</span>
