@@ -1,5 +1,7 @@
 import React from "react";
 import "./Signup.css";
+import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+
 
 const Signup = () => {
   return (
@@ -10,15 +12,15 @@ const Signup = () => {
       </div>{" "}
       <div className="inputs">
         <div className="input">
-          <img src="" alt="" />
+        <FaUser className="icon" />
           <input type="text" placeholder="Name" />
         </div>
         <div className="input">
-          <img src="" alt="" />
+        <FaEnvelope className="icon" />
           <input type="email" placeholder="Email" />
         </div>
         <div className="input">
-          <img src="" alt="" />
+        <FaLock className="icon" />
           <input type="password" placeholder="Password" />
         </div>
       </div>
