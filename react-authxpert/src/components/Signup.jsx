@@ -33,7 +33,7 @@ const Signup = () => {
       </div>
       <div className="submit-container">
         <div className="submit">Sign Up</div>
-        <div className="submit gray">Sign In</div>
+        <div className="submit red">Sign In</div>
       </div>
     </div>
   );

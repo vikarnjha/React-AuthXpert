@@ -64,8 +64,8 @@
   margin: 0 10px;
 }
 
-.submit.gray {
-  background: #ccc;
+.submit.red {
+  background: #f44336;
 }
 
 .icon {
