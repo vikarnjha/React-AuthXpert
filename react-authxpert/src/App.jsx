@@ -1,12 +1,13 @@
 import './App.css'
+import Signin from './components/Signin'
+import Signup from './components/Signup'
 
 function App() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold underline">
-        Hello VJ
-      </h1>
+      <Signin />
+      <Signup />
     </>
   )
 }
