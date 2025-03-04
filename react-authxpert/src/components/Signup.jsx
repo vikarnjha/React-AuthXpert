@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Signup.css";
 import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -63,6 +63,49 @@ const Signup = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
+  const register = (name, email, password, confirmPassword) => {
+    if (!name || !email || !password || !confirmPassword) {
+      alert("All fields are required!");
+      return;
+    }
+    if (nameError || emailError || passwordError) {
+      alert("Please correct the errors first!");
+      return;
+    }
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    const user = {
+      name: name,
+      email: email,
+      password: password,
+    };
+
+    localStorage.setItem("user", JSON.stringify(user));
+    alert("User Signup Successfully");
+    console.log("User Data:", user);
+    setAction("Sign In");
+    setName("");
+    // setEmail("");
+    // setPassword("");
+    setConfirmPassword("");
+  };
+
+  const login = () => {
+    if (email && password) {
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userPassword", password);
+      alert("User Sign In Successfully");
+      console.log("User Data:", { email, password });
+      alert(`Welcome ${email}`);
+      localStorage.clear();
+    } else {
+      alert("Please enter email and password");
+    }
+  };
+
   return (
     <div className="container">
       <div className="header">
@@ -108,8 +151,8 @@ const Signup = () => {
                 onChange={confirmPasswordO}
               />
               <span onClick={toggleConfirmPassword} className="eye-icon">
-              {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
-            </span>
+                {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
             </div>
             {passwordError && <p className="error-message">{passwordError}</p>}
           </>
@@ -123,13 +166,25 @@ const Signup = () => {
       <div className="submit-container">
         <div
           className={action === "Sign Up" ? "submit red" : "submit"}
-          onClick={() => setAction("Sign Up")}
+          onClick={() => {
+            if (action === "Sign Up") {
+              register(name, email, password, confirmPassword);
+            } else {
+              setAction("Sign Up");
+            }
+          }}
         >
           Sign Up
         </div>
         <div
           className={action === "Sign In" ? "submit red" : "submit"}
-          onClick={() => setAction("Sign In")}
+          onClick={() => {
+            if (action === "Sign In") {
+              login();
+            } else {
+              setAction("Sign In");
+            }
+          }}
         >
           Sign In
         </div>
