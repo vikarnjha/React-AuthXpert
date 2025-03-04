@@ -30,7 +30,7 @@ const Signup = () => {
     if (emailPattern.test(email)) {
       setEmailError(""); // Clear error if email is valid
     } else {
-      setEmailError("Invalid Email Address");
+      setEmailError("Enter a valid Email address");
     }
   };
 
