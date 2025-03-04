@@ -147,4 +147,38 @@
     background: #050708;
     color: white;
   }
+
   
+/* error css */
+
+.error-message {
+  color: #ff4d4f; /* Red color for errors */
+  font-size: 0.875rem; /* Small Text */
+  margin-top: 5px;
+  padding: 0.4rem;
+  background: #ffe6e6; /* Light red background */
+  border: 1px solid #ff4d4f;
+  border-radius: 5px; /* Rounded Corners */
+  text-align: center;
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+/* css for eye-icon for toggle */
+
+.input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #666;
+}
+
+.eye-icon:hover {
+  color: #000;
+}

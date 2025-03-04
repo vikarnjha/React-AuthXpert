@@ -1,9 +1,68 @@
 import React, { useState } from "react";
 import "./Signup.css";
-import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Signup = () => {
   const [action, setAction] = useState("Sign Up");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const nameO = (e) => {
+    const value = e.target.value;
+    setName(value);
+    if (value.length > 16) setNameError("Name is to long");
+    else if (value.length < 3) setNameError("Name is to short");
+    else setNameError("");
+  };
+  const emailO = (e) => {
+    const email = e.target.value;
+    setEmail(email);
+
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (emailPattern.test(email)) {
+      setEmailError(""); // Clear error if email is valid
+    } else {
+      setEmailError("Invalid Email Address");
+    }
+  };
+
+  const passwordO = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+    if (value.length < 8)
+      setPasswordError("Password must be at least 8 characters long");
+    setPasswordError(""); // Clear error while typing password
+  };
+
+  const confirmPasswordO = (e) => {
+    const value = e.target.value;
+    setConfirmPassword(value);
+
+    if (!password) {
+      setPasswordError("Please enter your password first");
+    } else if (value !== password) {
+      setPasswordError("Passwords do not match");
+    } else {
+      setPasswordError(""); // Clear error if passwords match
+    }
+  };
+
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
   return (
     <div className="container">
       <div className="header">
@@ -12,24 +71,48 @@ const Signup = () => {
       </div>{" "}
       <div className="inputs">
         {action === "Sign Up" && (
-          <div className="input">
-            <FaUser className="icon" />
-            <input type="text" placeholder="Username" />
-          </div>
+          <>
+            <div className="input">
+              <FaUser className="icon" />
+              <input type="text" placeholder="Name" onChange={nameO} />
+            </div>
+            {nameError && <p className="error-message">{nameError}</p>}
+          </>
         )}
-        <div className="input">
-          <FaEnvelope className="icon" />
-          <input type="email" placeholder="Email" />
-        </div>
+
+        <>
+          <div className="input">
+            <FaEnvelope className="icon" />
+            <input type="text" placeholder="Email" onChange={emailO} />
+          </div>
+          {emailError && <p className="error-message">{emailError}</p>}
+        </>
         <div className="input">
           <FaLock className="icon" />
-          <input type="password" placeholder="Password" />
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            onChange={passwordO}
+          />
+          <span onClick={togglePassword} className="eye-icon">
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
         </div>
         {action === "Sign Up" && (
-          <div className="input">
-            <FaLock className="icon" />
-            <input type="password" placeholder="Confirm Password" />
-          </div>
+          <>
+            <div className="input">
+              <FaLock className="icon" />
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="Confirm Password"
+                onChange={confirmPasswordO}
+              />
+              <span onClick={toggleConfirmPassword} className="eye-icon">
+              {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+            </div>
+            {passwordError && <p className="error-message">{passwordError}</p>}
+          </>
         )}
       </div>
       {action === "Sign In" && (
