@@ -86,9 +86,9 @@ const Signup = () => {
     localStorage.setItem("user", JSON.stringify(user));
     signUpSuccess();
     console.log("User Data:", user);
-    setTimeout(() => {
-      window.location.href = "/";
-    }, 1500);
+    // setTimeout(() => {
+    //   window.location.href = "/";
+    // }, 1500);
     setName("");
     setEmail("");
     setPassword("");
@@ -105,7 +105,7 @@ const Signup = () => {
       welcomeMessage();
       setTimeout(() => {
         window.location.href = "/";
-      }, 3000);
+      }, 5000);
     } else {
       signInError();
     }
