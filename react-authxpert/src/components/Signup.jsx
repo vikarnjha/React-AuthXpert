@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
 import "./Signup.css";
 import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -13,6 +14,13 @@ const Signup = () => {
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const signInSuccess = () => toast("Sign In Successfully!");
+  const signUpSuccess = () => toast("Sign Up Successfully!");
+  // const signOutSuccess = () => toast("Sign Out Successfully!");
+  const signInError = () => toast("Invalid Credentials!");
+  const signUpError = () => toast("All fields are compulsory!");
+  // const signOutError = () => toast("Server Error!");
+
 
   const nameO = (e) => {
     const value = e.target.value;
@@ -65,17 +73,17 @@ const Signup = () => {
 
   const register = (name, email, password, confirmPassword) => {
     if (!name || !email || !password || !confirmPassword) {
-      alert("All fields are required!");
+      signUpError();
       return;
     }
-    if (nameError || emailError || passwordError) {
-      alert("Please correct the errors first!");
-      return;
-    }
-    if (password !== confirmPassword) {
-      alert("Passwords do not match");
-      return;
-    }
+    // if (nameError || emailError || passwordError) {
+    //   alert("Please correct the errors first!");
+    //   return;
+    // }
+    // if (password !== confirmPassword) {
+    //   alert("Passwords do not match");
+    //   return;
+    // }
 
     const user = {
       name: name,
@@ -84,8 +92,11 @@ const Signup = () => {
     };
 
     localStorage.setItem("user", JSON.stringify(user));
-    alert("User Signup Successfully");
+    signUpSuccess();
     console.log("User Data:", user);
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 3000);
     setAction("Sign In");
     setName("");
     // setEmail("");
@@ -97,12 +108,16 @@ const Signup = () => {
     if (email && password) {
       localStorage.setItem("userEmail", email);
       localStorage.setItem("userPassword", password);
-      alert("User Sign In Successfully");
+      signInSuccess();
       console.log("User Data:", { email, password });
-      alert(`Welcome ${email}`);
+      const welcomeMessage = () => toast(`Welcome ${email}!`);
+      welcomeMessage();
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 3000);
       localStorage.clear();
     } else {
-      alert("Please enter email and password");
+      signInError();
     }
   };
 
@@ -301,6 +316,7 @@ const Signup = () => {
           </div>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };
