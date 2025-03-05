@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 import "./Signup.css";
 import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -14,13 +15,14 @@ const Signup = () => {
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const signInSuccess = () => toast("Sign In Successfully!");
-  const signUpSuccess = () => toast("Sign Up Successfully!");
+  const signInSuccess = () => toast.success("Sign In Successfully!");
+  const signUpSuccess = () => toast.success("Sign Up Successfully!");
   // const signOutSuccess = () => toast("Sign Out Successfully!");
-  const signInError = () => toast("Invalid Credentials!");
-  const signUpError = () => toast("All fields are compulsory!");
+  const signInError = () => toast.error("Invalid Credentials!");
+  const signUpError = () => toast.warn("All fields are compulsory!");
   // const signOutError = () => toast("Server Error!");
-
+  const signInBtnSuccess = () => toast.success("Sign In Successfully!");
+  const welcomeMessage = () => toast(`Welcome ${email}!`);
 
   const nameO = (e) => {
     const value = e.target.value;
@@ -45,9 +47,11 @@ const Signup = () => {
   const passwordO = (e) => {
     const value = e.target.value;
     setPassword(value);
-    if (value.length < 8)
+    if (value.length < 8) {
       setPasswordError("Password must be at least 8 characters long");
-    setPasswordError(""); // Clear error while typing password
+    } else {
+      setPasswordError(""); // Clear error only if the password is valid
+    }
   };
 
   const confirmPasswordO = (e) => {
@@ -76,32 +80,20 @@ const Signup = () => {
       signUpError();
       return;
     }
-    // if (nameError || emailError || passwordError) {
-    //   alert("Please correct the errors first!");
-    //   return;
-    // }
-    // if (password !== confirmPassword) {
-    //   alert("Passwords do not match");
-    //   return;
-    // }
 
-    const user = {
-      name: name,
-      email: email,
-      password: password,
-    };
+    const user = { name, email, password };
 
     localStorage.setItem("user", JSON.stringify(user));
     signUpSuccess();
     console.log("User Data:", user);
     setTimeout(() => {
       window.location.href = "/";
-    }, 3000);
-    setAction("Sign In");
+    }, 1500);
     setName("");
-    // setEmail("");
-    // setPassword("");
+    setEmail("");
+    setPassword("");
     setConfirmPassword("");
+    setAction("Sign In");
   };
 
   const login = () => {
@@ -110,12 +102,10 @@ const Signup = () => {
       localStorage.setItem("userPassword", password);
       signInSuccess();
       console.log("User Data:", { email, password });
-      const welcomeMessage = () => toast(`Welcome ${email}!`);
       welcomeMessage();
       setTimeout(() => {
         window.location.href = "/";
       }, 3000);
-      localStorage.clear();
     } else {
       signInError();
     }
@@ -209,6 +199,7 @@ const Signup = () => {
         <div className="or">
           <div className="facebook">
             <button
+              onClick={signInBtnSuccess}
               type="button"
               class="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 me-2 mb-2"
             >
@@ -230,6 +221,7 @@ const Signup = () => {
           </div>
           <div className="twitter">
             <button
+              onClick={signInBtnSuccess}
               type="button"
               class="text-white bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 me-2 mb-2"
             >
@@ -251,6 +243,7 @@ const Signup = () => {
           </div>
           <div className="github">
             <button
+              onClick={signInBtnSuccess}
               type="button"
               class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 me-2 mb-2"
             >
@@ -272,6 +265,7 @@ const Signup = () => {
           </div>
           <div className="google">
             <button
+              onClick={signInBtnSuccess}
               type="button"
               class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 me-2 mb-2"
             >
@@ -293,6 +287,7 @@ const Signup = () => {
           </div>
           <div className="apple">
             <button
+              onClick={signInBtnSuccess}
               type="button"
               class="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 me-2 mb-2"
             >
@@ -316,7 +311,19 @@ const Signup = () => {
           </div>
         </div>
       )}
-      <ToastContainer />
+      <ToastContainer
+        className={"toast-container"}
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

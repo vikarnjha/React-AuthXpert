@@ -108,6 +108,11 @@
     transition: background 0.3s ease, transform 0.2s ease;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   }
+  button.Toastify__close-button.Toastify__close-button--light {
+    max-width:fit-content;
+    max-height: fit-content;
+    width: auto;
+  }
   
   button:hover {
     transform: scale(1.05);
@@ -182,3 +187,5 @@
 .eye-icon:hover {
   color: #000;
 }
+
+/* css for toast */
