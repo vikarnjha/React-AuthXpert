@@ -22,7 +22,7 @@ const Signup = () => {
   const signUpError = () => toast.warn("All fields are compulsory!");
   // const signOutError = () => toast("Server Error!");
   const signInBtnSuccess = () => toast.success("Sign In Successfully!");
-  const welcomeMessage = () => toast(`Welcome ${email}!`);
+  // const welcomeMessage = () => toast(`Welcome ${email}!`);
 
   const nameO = (e) => {
     const value = e.target.value;
@@ -102,10 +102,10 @@ const Signup = () => {
       localStorage.setItem("userPassword", password);
       signInSuccess();
       console.log("User Data:", { email, password });
-      welcomeMessage();
+      // welcomeMessage();
       setTimeout(() => {
-        window.location.href = "/";
-      }, 5000);
+        window.location.href = "/home";
+      }, 3000);
     } else {
       signInError();
     }
