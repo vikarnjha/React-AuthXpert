@@ -28,9 +28,10 @@ const Home = () => {
 
   return (
     <>
-      <h1>Welcome to the AuthXpert 🚀</h1>
-      <p>You have successfully Signed In!</p>
+      <h1 className="home-heading">Welcome to the AuthXpert 🚀</h1>
+      <p className="home-message">You have successfully Signed In!</p>
       <button
+        className="sign-out-btn"
         onClick={() => {
           signOutSuccess();
           signout();
