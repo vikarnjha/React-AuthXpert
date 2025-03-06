@@ -1,0 +1,40 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+
+}
+p {
+  text-align: center;
+  font-size: 24px;
+  font-weight: normal;
+
+}
+h1 {
+  font-size: 50px;
+  text-align: center;
+}
+
+button {
+  background-color: red;
+  border: none;
+  color: white;
+  max-width: fit-content;
+  margin: 0 auto;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.98);
+
+}
