@@ -1,64 +1,67 @@
 # React-AuthXpert
-A Sign In &amp; Sign Up Authentication System built using React.js with modern UI design. This project features Form Validation, Password Visibility Toggle, and seamless Client-Side Authentication.
+A Sign In & Sign Up Authentication System built using React.js with modern UI design. This project features Form Validation, Password Visibility Toggle, and seamless Client-Side Authentication.
 
 # 🔑 Technologies Used:
-React.js
-HTML5 & CSS3
-Tailwind CSS
-React Hooks
-React Router (for navigation)
-JavaScript (ES6)
-Local Storage (for temporary user data storage)
+- React.js
+- HTML5 & CSS3
+- Tailwind CSS
+- React Hooks
+- React Router (for navigation)
+- JavaScript (ES6)
+- Local Storage (for temporary user data storage)
+- React Icons
+- React Toastify (for notifications)
 
 # 🎯 Features
 
-User Registration (Signup)
+- User Registration (Signup)
+- User Login (Signin)
+- Form Validation (Email, Password Length)
+- Password Visibility Toggle
+- Navigation using React Router
+- Persistent Login using Local Storage
+- Responsive Design using Tailwind CSS
+- Toast Notifications
+- Sign Out Functionality with Delayed Navigation
 
-User Login (Signin)
+# 🚀 Installation
 
-Form Validation (Email, Password Length)
-
-Password Visibility Toggle
-
-Navigation using React Router
-
-Persistent Login using Local Storage
-
-Responsive Design using Tailwind CSS
-
-🚀 Installation
-
-# Clone the repository
+### Clone the repository
+```bash
 git clone https://github.com/vikarnjha/React-AuthXpert.git
+```
 
-# Navigate to the project folder
+### Navigate to the project folder
+```bash
 cd React-AuthXpert
+```
 
-# Install dependencies
+### Install dependencies
+```bash
 npm install
+```
 
-# Start the development server
+### Start the development server
+```bash
 npm run dev
+```
 
 # 📌 Usage
 
-Open the app in your browser at http://localhost:3000.
-
-Sign up with a new account.
-
-Login with your credentials.
-
-Navigate between pages.
+1. Open the app in your browser at http://localhost:5173.
+2. Sign up with a new account.
+3. Login with your credentials.
+4. Navigate between pages.
+5. Sign out with toast notifications.
 
 # 🛠️ Future Improvements
 
-JWT Authentication
-
-Backend Integration (Node.js + MongoDB)
-
-Password Reset Functionality
-
-Dark Mode
+- JWT Authentication
+- Backend Integration (Node.js + MongoDB)
+- Password Reset Functionality
+- Dark Mode
+- Profile Management
+- Loading Spinners
 
 # 📄 License
 
